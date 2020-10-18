@@ -1,0 +1,83 @@
+/* body properties */
+body {
+	background-color: #f3f3f3;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: #283747;
+}
+
+/* Header section */
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 20px;
+	width: auto;
+	font-size: 1.2em;
+	font-weight: 400;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: #3c1874;	
+}
+
+header a {
+	text-decoration: underline #3c1874;
+}
+
+.header-score {
+	margin-left: 20px;
+}
+
+.header-timer {
+	
+	margin-right: 20px;
+}
+
+/* Titles font */
+h1, h2, h3, h4, h4 {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* div block */
+button {
+	padding: 5px 20px;
+	background-color: #3c1874;
+	border: 0px;
+	border-radius: 10px;
+	color: #f3f3f3;
+	font-weight: 500;
+	font-size: 1em;
+}
+
+button:hover {
+	color:#f3f3f3;
+	background-color: #784cbe;
+}
+
+/* div block */
+.main-box {
+	padding-top: 50px;
+	margin-left: 25%;
+}
+
+/* On screens that are 992px wide or less, main-box size */
+@media screen and (max-width: 992px) {
+	.main-box {
+		padding-top: 40px;
+		margin-left: 15%;
+	}
+}
+
+/* On screens that are 600px wide or less, main-box size */
+@media screen and (max-width: 600px) {
+	.main-box {
+		padding-top: 30px;
+		margin-left: 10%;
+	}
+}
+
+/* On screens that are 400px wide or less, main-box size */
+@media screen and (max-width: 500px) {
+	.main-box {
+		padding-top: 20px;
+		margin-left: 4%;
+	}
+}
