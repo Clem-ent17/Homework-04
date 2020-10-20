@@ -45,6 +45,21 @@ var question4 = ['What is the best and cooler pet (hint: I am a cat person)?', [
 
 var questionsArray = [question0, question1, question2, question3, question4]
 
+var q = [
+    {
+        question:'Which command log a message to the console?', 
+        choice:['console.log.message()', 'consolelog()','console.log()', 'consoleLog()'],
+        answer:'console.log()'
+    },
+    {
+        question:'Which code line avoid to refresh the browser:', 
+        choice:['event.preventRefresh()', 'event.avoidDefault()','event.preventDefault', 'event.preventDefault()'],
+        answer:'console.log()'
+    }
+]
+
+q[0].question
+
 function startQuiz() {
 
     makeQuiz()
@@ -66,22 +81,28 @@ function startQuiz() {
             for (var j = 0; j < 4; j++) {
                 var answerPop = document.createElement('button')
                 answerPop.setAttribute('style', 'display:block; margin-left: 10px; margin-top:10px;')
+                
+                answerPop.setAttribute('value', questionsArray)
+                
                 answerPop.textContent = questionsArray[i][1][j]
                 divAnswers.append(answerPop)
             }
 
-            if (answerChoice == questionsArray[i][2]) {
+            var buttonGenerated = document.querySelectorAll('button')
+           
 
-            }
-
-            answerPop.addEventListener('click', printAnswer)
-
+            /*
             function printAnswer() {
-                var answerChoice = ''
+                if (buttonAnwers == questionsArray[i][2]) {
+                    console.log("You won")
+                } else {
+                    console.log("Wrong!")
+                }
             }
+            */
 
         }
-        
+
     }
 
 }
