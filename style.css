@@ -39,6 +39,7 @@ h1, h2, h3, h4, h4 {
 /* div block */
 button {
 	padding: 5px 20px;
+	margin:auto;
 	background-color: #3c1874;
 	border: 0px;
 	border-radius: 10px;
@@ -56,6 +57,7 @@ button:hover {
 .main-box {
 	padding-top: 50px;
 	margin-left: 25%;
+	margin-right: 25%;
 }
 
 /* On screens that are 992px wide or less, main-box size */
@@ -63,6 +65,7 @@ button:hover {
 	.main-box {
 		padding-top: 40px;
 		margin-left: 15%;
+		margin-right: 15%;
 	}
 }
 
@@ -71,6 +74,7 @@ button:hover {
 	.main-box {
 		padding-top: 30px;
 		margin-left: 10%;
+		margin-right: 10%;
 	}
 }
 
@@ -79,5 +83,7 @@ button:hover {
 	.main-box {
 		padding-top: 20px;
 		margin-left: 4%;
+		margin-right: 4%;
 	}
 }
+
