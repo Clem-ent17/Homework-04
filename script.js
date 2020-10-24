@@ -35,7 +35,7 @@ var questions = [
         answer:'boolean'
     },
     {
-        title:'What is the best and cooler pet (hint: I am a cat person)?', 
+        title:'What is the best and coolest pet (hint: I am a cat person)?', 
         choices:['dog...', 'platypus?','>> CAT! <<', 'aloe vera plant'],
         answer:'>> CAT! <<'
     }
