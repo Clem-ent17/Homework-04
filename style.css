@@ -18,25 +18,12 @@ header {
 	color: #3c1874;	
 }
 
-header a {
-	text-decoration: underline #3c1874;
-}
-
-.header-score {
-	margin-left: 20px;
-}
-
-.header-timer {
-	
-	margin-right: 20px;
-}
-
 /* Titles font */
 h1, h2, h3, h4, h4 {
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* div block */
+/* button style */
 button {
 	padding: 5px 20px;
 	margin:auto;
@@ -48,13 +35,55 @@ button {
 	font-size: 1em;
 }
 
+/* button when hover style */
 button:hover {
 	color:#f3f3f3;
 	background-color: #784cbe;
 }
 
-/* div block */
-.main-box {
+/* a link on header color*/
+header a {
+	text-decoration: underline #3c1874;
+}
+
+/* Class Header-score position */
+.header-score {
+	margin-left: 20px;
+}
+
+/* Class Header-score position */
+.header-timer {
+	margin-right: 20px;
+}
+
+/* Class hide content */
+.hide {
+	display: none;
+}
+
+/* Class feedback styles */
+.feedback {
+	margin-top: 20px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: #999999;
+	font-style: italic;
+}
+
+/* Class center font */
+.center {
+	text-align: center;
+}
+
+/* Class center button */
+.center-button {
+	display: flex; 
+	text-align: center; 
+	justify-content: center; 
+	align-items: center;
+}
+
+/* div block with info */
+.wrapper {
 	padding-top: 50px;
 	margin-left: 25%;
 	margin-right: 25%;
@@ -62,7 +91,7 @@ button:hover {
 
 /* On screens that are 992px wide or less, main-box size */
 @media screen and (max-width: 992px) {
-	.main-box {
+	.wrapper {
 		padding-top: 40px;
 		margin-left: 15%;
 		margin-right: 15%;
@@ -71,7 +100,7 @@ button:hover {
 
 /* On screens that are 600px wide or less, main-box size */
 @media screen and (max-width: 600px) {
-	.main-box {
+	.wrapper {
 		padding-top: 30px;
 		margin-left: 10%;
 		margin-right: 10%;
@@ -80,10 +109,11 @@ button:hover {
 
 /* On screens that are 400px wide or less, main-box size */
 @media screen and (max-width: 500px) {
-	.main-box {
+	.wrapper {
 		padding-top: 20px;
 		margin-left: 4%;
 		margin-right: 4%;
 	}
 }
+
 

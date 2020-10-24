@@ -1,129 +1,163 @@
-var divQuestion = document.getElementById('question')
-var divAnswers = document.getElementById('buttons')
-var divResult = document.getElementById('result')
+//Variables to access html elements
 
-introGame()
+//var infoEl = document.getElementById('info')
+//var quizEl = document.getElementById('quiz')
+var startButton = document.getElementById('start')
+var questionsEl = document.getElementById('questions')
+var choicesEl = document.getElementById('choices')
+var feedbackEl = document.getElementById('feedback')
+var submitButton = document.getElementById('submit')
+var initialsEl = document.getElementById('initials')
+var timerEl = document.getElementById('time')
+var time = 60
+var timerId
 
-//Intro game info
-function introGame() {
+//Variable question index start at 0
+var currentQuestionIndex = 0;
 
-    //Generate title
-    var title = document.createElement("h2")
-    title.textContent = 'Coding Quiz Challenge'
-    title.setAttribute('style', 'text-align: center;')
-    divQuestion.append(title)
-
-    //Generate explanations
-    var content = document.createElement("p")
-    content.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 10 seconds!'
-    content.setAttribute('style', 'text-align: center;')
-    divAnswers.append(content)
-
-    //Generate button to start the game
-    var button = document.createElement("button")
-    button.textContent = 'Start Quiz'
-    button.setAttribute('style', 'display: flex; text-align: center; justify-content: center; align-items: center;')
-    divAnswers.append(button)
-
-    //Event on the button to launch the next function
-    button.addEventListener('click', buttonClick)
-
-    //Function suppress content and move on the next step
-    function buttonClick() {
-    
-        startQuiz()
-
-    }
-
-}
-
-var question0 = ['Which command log a message to the console?', ['console.log.message()', 'consolelog()','console.log()', 'consoleLog()'], 'console.log()']
-var question1 = ['Which code line avoid to refresh the browser:', ['event.preventRefresh()', 'event.avoidDefault()','event.preventDefault', 'event.preventDefault()'], 'event.preventDefault()']
-var question2 = ['Array are a type of variable that are:', ['events', 'styles','collections', 'statements'], 'collections']
-var question3 = ['comfim() method returns:', ['boolean', 'string','arrays', 'objects'], 'boolean']
-var question4 = ['What is the best and cooler pet (hint: I am a cat person)?', ['dog...', 'platypus?','>> CAT! <<', 'aloe vera plant'], '>> CAT! <<']
-
-var questionsArray = [question0, question1, question2, question3, question4]
-
-var q = [
+//Variables questions with all the questions, choices and answers
+var questions = [
     {
-        question:'Which command log a message to the console?', 
-        choice:['console.log.message()', 'consolelog()','console.log()', 'consoleLog()'],
+        title:'Which command log a message to the console?', 
+        choices:['console.log.message()', 'consolelog()','console.log()', 'consoleLog()'],
         answer:'console.log()'
     },
     {
-        question:'Which code line avoid to refresh the browser:', 
-        choice:['event.preventRefresh()', 'event.avoidDefault()','event.preventDefault', 'event.preventDefault()'],
-        answer:'console.log()'
+        title:'Which code line avoid to refresh the browser:', 
+        choices:['event.preventRefresh()', 'event.avoidDefault()','event.preventDefault', 'event.preventDefault()'],
+        answer:'event.preventDefault()'
+    },
+    {
+        title:'Array are a type of variable that are:', 
+        choices:['events', 'styles','collections', 'statements'],
+        answer:'collections'
+    },
+    {
+        title:'comfim() method returns:', 
+        choices:['boolean', 'string','arrays', 'objects'],
+        answer:'boolean'
+    },
+    {
+        title:'What is the best and cooler pet (hint: I am a cat person)?', 
+        choices:['dog...', 'platypus?','>> CAT! <<', 'aloe vera plant'],
+        answer:'>> CAT! <<'
     }
 ]
 
-q[0].question
+//Timer function
+function clockTick() {
+    time--;
+    timerEl.textContent = time
 
-function startQuiz() {
-
-    makeQuiz()
-
-    function makeQuiz() {
-
-        for (var i = 0; i < questionsArray.length; i++) {
-
-            //delete previous texts
-            divQuestion.innerHTML = ''
-            divAnswers.innerHTML = ''
-
-            //generate the question
-            var questionPop = document.createElement('h3')
-            questionPop.textContent = questionsArray[i][0]
-            divQuestion.append(questionPop)
-
-            //generate buttons for the answers
-            for (var j = 0; j < 4; j++) {
-                var answerPop = document.createElement('button')
-                answerPop.setAttribute('style', 'display:block; margin-left: 10px; margin-top:10px;')
-                
-                answerPop.setAttribute('value', questionsArray)
-                
-                answerPop.textContent = questionsArray[i][1][j]
-                divAnswers.append(answerPop)
-            }
-
-            var buttonGenerated = document.querySelectorAll('button')
-           
-
-            /*
-            function printAnswer() {
-                if (buttonAnwers == questionsArray[i][2]) {
-                    console.log("You won")
-                } else {
-                    console.log("Wrong!")
-                }
-            }
-            */
-
-        }
-
+    if (time <= 0) {
+        endGame()
     }
+}
+
+//Start the quiz function
+function startQuiz() {
+    
+    var startScreen = document.getElementById('start-screen')
+    startScreen.setAttribute("class", "hide")
+
+    timerId = setInterval(clockTick, 1000)
+
+    getQuestion()
 
 }
 
+//Generate the questions and answers
+function getQuestion() {
 
+    questionsEl.removeAttribute('class')
+    var currentQuestion = questions[currentQuestionIndex]
+    var titleEl = document.getElementById("question-title")
+    titleEl.textContent = currentQuestion.title
+    
+    choicesEl.innerHTML = "";
 
+    currentQuestion.choices.forEach(function(choice, i) {
+        var optionButton = document.createElement("button")
+        optionButton.setAttribute("class", "choice")
+        optionButton.setAttribute("value", choice)
+        optionButton.setAttribute("style", "display:block; margin-top:10px; margin-left:10px;")
 
+        optionButton.textContent = choice
+        optionButton.onclick = answerClick
+        choicesEl.appendChild(optionButton)
+    })
+    
+}
 
-/*
-- Create a div with a button to start the quiz 
-    -When button is clicked start timer
-    -Clear the div
-    -Add the question in a FOR loop
-        - If question is correct: Add copy"hr and Correct!", move to the next question
-        - If question is incorrect: Delete 15sec, and add copy "hr and Incorrect!", move to the next question
-        After question is answered, move to the next question.
-    - After 5 questions, open new div the SCORE and a input field
-        Add your initial and score
-        Click "add your score" or "clear your score"
-            If add, stock the data into the local storage
-            When one of the button is clicked move to the first page
+//Define the answers, and continue the loop
+function answerClick () {
 
-    -If timer = 0, game is lost, go to score.
-*/
+    if (this.value !== questions[currentQuestionIndex].answer) {
+        feedbackEl.textContent = "Wrong!"
+    }
+    else {
+        feedbackEl.textContent = "Right!"
+    }
+
+    feedbackEl.setAttribute('class', 'feedback')
+    setTimeout(function (){
+        feedbackEl.setAttribute('class', 'feedback hide')
+    }, 1000)
+ 
+    currentQuestionIndex++
+
+    if (currentQuestionIndex === questions.length) {
+        endGame()
+    } else {
+        getQuestion()
+    }
+       
+}
+
+//End of the game function
+function endGame() {
+
+    feedbackEl.textContent = "The end!"
+    clearInterval(timerId)
+
+    var endScreen = document.getElementById('end-screen')
+    endScreen.removeAttribute('class')
+
+    var showScore = document.getElementById('final-score')
+    showScore.textContent = time
+
+    var questionScreen = document.getElementById('questions')
+    questionScreen.setAttribute('class', 'hide')
+
+}
+
+//Submit your score to the local storage
+function submitInitials() {
+    var initials = initialsEl.value.trim()
+    var userScore = {
+        score: time,
+        initials: initials
+    }
+    var highscores = [] || JSON.parse(window.localStorage.getItem('highscores'))
+    highscores.push(userScore)
+    window.localStorage.setItem("highscores", JSON.stringify(highscores))
+
+    var endScreen = document.getElementById('end-screen')
+    endScreen.setAttribute('class', 'hide')
+
+    var leaderBoardScreen = document.getElementById('leaderboard')
+    leaderBoardScreen.removeAttribute('class')  
+
+    highscores.forEach(function(score) {
+        var liTag = document.createElement('li')
+        liTag.textContent = score.initials
+        var listItem = document.getElementById('highscores')
+        listItem.appendChild(liTag)
+    })
+}
+
+//Button to start the quizz
+startButton.onclick = startQuiz
+
+//Button to submit your score
+submitButton.onclick = submitInitials
