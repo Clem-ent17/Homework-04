@@ -1,7 +1,4 @@
 //Variables to access html elements
-
-//var infoEl = document.getElementById('info')
-//var quizEl = document.getElementById('quiz')
 var startButton = document.getElementById('start')
 var questionsEl = document.getElementById('questions')
 var choicesEl = document.getElementById('choices')
@@ -59,6 +56,9 @@ function startQuiz() {
     
     var startScreen = document.getElementById('start-screen')
     startScreen.setAttribute("class", "hide")
+
+    var leaderBoardScreen = document.getElementById('leaderboard')
+    leaderBoardScreen.setAttribute('class', 'hide')
 
     timerId = setInterval(clockTick, 1000)
 
@@ -154,6 +154,10 @@ function submitInitials() {
         var listItem = document.getElementById('highscores')
         listItem.appendChild(liTag)
     })
+
+    var returnButton = document.getElementById('return-home')
+    
+    returnButton.onclick = startQuiz
 }
 
 //Button to start the quizz
